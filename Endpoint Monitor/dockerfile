@@ -1,0 +1,18 @@
+FROM alpine:latest
+
+# Install Curl
+RUN apk add --no-cache curl
+
+# Add crontab
+COPY crontab /var/spool/cron/crontabs/root
+
+# Copy script files
+COPY monitor.sh /bin/monitorscript/monitor
+COPY sites.txt /bin/monitorscript/sites.txt
+COPY activefailure.txt /bin/monitorscript/activefailure.txt
+
+# Add permissions
+RUN chmod +x /bin/monitorscript/monitor
+
+# Run crond
+CMD crond -l 2 -f
