@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 # Install Curl
-RUN apk add --no-cache curl
+RUN RUN apk update && apk add --no-cache curl
 
 # Add crontab
 COPY crontab /var/spool/cron/crontabs/root
