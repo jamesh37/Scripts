@@ -7,12 +7,11 @@ RUN apk add --no-cache curl
 COPY crontab /var/spool/cron/crontabs/root
 
 # Copy script files
-COPY monitor.sh /bin/monitorscript/monitor
-COPY sites.txt /bin/monitorscript/sites.txt
-COPY activefailure.txt /bin/monitorscript/activefailure.txt
+WORKDIR /bin/monitorscript/
+COPY monitor.sh sites.txt activefailure.txt ./
 
 # Add permissions
-RUN chmod +x /bin/monitorscript/monitor
+RUN chmod +x /bin/monitorscript/monitor.sh
 
 # Run crond
 CMD crond -l 2 -f
