@@ -11,7 +11,7 @@ WORKDIR /bin/monitorscript/
 COPY monitor.sh sites.txt activefailure.txt ./
 
 # Add permissions
-RUN chmod +x /bin/monitorscript/monitor.sh
+RUN chmod 777 /bin/monitorscript/
 
 # Run crond
 CMD crond -l 2 -f
