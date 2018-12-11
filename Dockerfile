@@ -8,10 +8,7 @@ COPY crontab /var/spool/cron/crontabs/root
 
 # Copy script files
 WORKDIR /bin/monitorscript/
-COPY monitor.sh sites.txt activefailure.txt ./
-
-# Add permissions
-RUN chmod 777 /bin/monitorscript/
+COPY monitor.sh sites.txt ./
 
 # Run crond
 CMD crond -l 2 -f
